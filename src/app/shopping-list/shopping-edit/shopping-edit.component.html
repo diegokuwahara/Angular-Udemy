@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" #shoppingListForm="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            required
+            ngModel
+            #name="ngModel">
+            <div class="text-danger" *ngIf="!name.valid && name.touched">Invalid name!</div>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            class="form-control"
+            required
+            ngModel
+            #amount="ngModel">
+            <div class="text-danger" *ngIf="!amount.valid && amount.touched">Invalid amount!</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button 
+            class="btn btn-success" 
+            type="submit" 
+            [disabled]="!shoppingListForm.valid"
+            >
+            {{ editMode ? 'Edit' : 'Add' }}
+          </button>
+          <button 
+            class="btn btn-danger" 
+            type="button"
+            [disabled]="selectedIndex == null"
+            (click)="deleteIngredient()">
+            Delete
+          </button>
+          <button 
+            class="btn btn-primary" 
+            type="button"
+            (click)="resetForm();">
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
